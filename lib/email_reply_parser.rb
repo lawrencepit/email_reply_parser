@@ -145,7 +145,11 @@ class EmailReplyParser
     # Example: "Sent from my iPhone 3G"
     SENT_FROM_REGEX = /^Sent from my (\s*\w+){1,3}(\s*<.*>)?$/
 
-    SIGNATURE_REGEX = Regexp.new(Regexp.union(MULTI_LINE_SIGNATURE_REGEX, ONE_LINE_SIGNATURE_REGEX, ORIGINAL_MESSAGE_SIGNATURE_REGEX, SENT_FROM_REGEX).source, Regexp::NOENCODING)
+    if defined?(Regexp::NOENCODING)
+      SIGNATURE_REGEX = Regexp.new(Regexp.union(MULTI_LINE_SIGNATURE_REGEX, ONE_LINE_SIGNATURE_REGEX, ORIGINAL_MESSAGE_SIGNATURE_REGEX, SENT_FROM_REGEX).source, Regexp::NOENCODING)
+    else
+      SIGNATURE_REGEX = Regexp.new(Regexp.union(MULTI_LINE_SIGNATURE_REGEX, ONE_LINE_SIGNATURE_REGEX, ORIGINAL_MESSAGE_SIGNATURE_REGEX, SENT_FROM_REGEX).source)
+    end
 
     # TODO: refactor out in a i18n.yml file
     # Supports English, French, Es-Mexican, Pt-Brazilian

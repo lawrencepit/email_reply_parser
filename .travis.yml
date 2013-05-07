@@ -7,6 +7,6 @@ branches:
 notifications:
   email:
     recipients:
-       - lawrence.pit@gmail.com
+       - rsanheim@gmail.com
     on_success: change
     on_failure: always
